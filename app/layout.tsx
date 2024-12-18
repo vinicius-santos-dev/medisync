@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const fontSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -22,7 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning is used to prevent a warning in the console
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-dark-300 font-sans antialiased",
