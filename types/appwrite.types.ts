@@ -9,7 +9,7 @@ export interface Patient extends Models.Document {
   gender: Gender;
   address: string;
   occupation: string;
-  emergencyContactName_: string;
+  emergencyContactName: string;
   emergencyContactNumber: string;
   primaryPhysician: string;
   insuranceProvider: string;
