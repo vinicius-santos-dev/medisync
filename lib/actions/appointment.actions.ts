@@ -22,6 +22,9 @@ export const createAppointment = async (
       appointment
     );
 
+    // Revalidate the /admin path to update the cache
+    revalidatePath("/admin");
+
     return parseStringify(newAppointment);
   } catch (error) {
     console.log(error);
@@ -121,6 +124,7 @@ export const updateAppointment = async ({
 
     await sendSMSNotification(userId, smsMessage)
 
+    // Revalidate the /admin path to update the cache
     revalidatePath("/admin");
 
     return parseStringify(updatedAppointment);
