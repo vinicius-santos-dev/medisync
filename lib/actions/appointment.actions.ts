@@ -53,8 +53,6 @@ export const getRecentAppointmentList = async () => {
       [Query.orderDesc("$createdAt")]
     );
 
-    console.log("Fetched appointments:", appointments);
-
     const initialCounts = {
       scheduledCount: 0,
       pendingCount: 0,
@@ -84,8 +82,6 @@ export const getRecentAppointmentList = async () => {
       ...counts,
       documents: appointments.documents,
     };
-
-    console.log("Processed appointment data:", data);
 
     return parseStringify(data);
   } catch (error) {

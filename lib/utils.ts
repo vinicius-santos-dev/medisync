@@ -44,33 +44,6 @@ export const formatDateTime = (date: Date | string, timeZone: string = 'UTC') =>
     timeZone: timeZone, // use the provided timezone
   };
 
-  // const formattedDateTime: string = new Date(dateString).toLocaleString(
-  //   "en-US",
-  //   dateTimeOptions
-  // );
-
-  // const formattedDateDay: string = new Date(dateString).toLocaleString(
-  //   "en-US",
-  //   dateDayOptions
-  // );
-
-  // const formattedDate: string = new Date(dateString).toLocaleString(
-  //   "en-US",
-  //   dateOptions
-  // );
-
-  // const formattedTime: string = new Date(dateString).toLocaleString(
-  //   "en-US",
-  //   timeOptions
-  // );
-
-  // return {
-  //   dateTime: formattedDateTime,
-  //   dateDay: formattedDateDay,
-  //   dateOnly: formattedDate,
-  //   timeOnly: formattedTime,
-  // };
-
   const dateObj = typeof date === 'string' ? new Date(date) : date;
 
   return {
