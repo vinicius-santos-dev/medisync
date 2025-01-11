@@ -10,7 +10,7 @@ export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
 // FORMAT DATE TIME
-export const formatDateTime = (dateString: Date | string, timeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone) => {
+export const formatDateTime = (date: Date | string, timeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone) => {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
     // weekday: "short", // abbreviated weekday name (e.g., 'Mon')
     month: "short", // abbreviated month name (e.g., 'Oct')
@@ -44,31 +44,40 @@ export const formatDateTime = (dateString: Date | string, timeZone: string = Int
     timeZone: timeZone, // use the provided timezone
   };
 
-  const formattedDateTime: string = new Date(dateString).toLocaleString(
-    "en-US",
-    dateTimeOptions
-  );
+  // const formattedDateTime: string = new Date(dateString).toLocaleString(
+  //   "en-US",
+  //   dateTimeOptions
+  // );
 
-  const formattedDateDay: string = new Date(dateString).toLocaleString(
-    "en-US",
-    dateDayOptions
-  );
+  // const formattedDateDay: string = new Date(dateString).toLocaleString(
+  //   "en-US",
+  //   dateDayOptions
+  // );
 
-  const formattedDate: string = new Date(dateString).toLocaleString(
-    "en-US",
-    dateOptions
-  );
+  // const formattedDate: string = new Date(dateString).toLocaleString(
+  //   "en-US",
+  //   dateOptions
+  // );
 
-  const formattedTime: string = new Date(dateString).toLocaleString(
-    "en-US",
-    timeOptions
-  );
+  // const formattedTime: string = new Date(dateString).toLocaleString(
+  //   "en-US",
+  //   timeOptions
+  // );
+
+  // return {
+  //   dateTime: formattedDateTime,
+  //   dateDay: formattedDateDay,
+  //   dateOnly: formattedDate,
+  //   timeOnly: formattedTime,
+  // };
+
+  const dateObj = typeof date === 'string' ? new Date(date) : date;
 
   return {
-    dateTime: formattedDateTime,
-    dateDay: formattedDateDay,
-    dateOnly: formattedDate,
-    timeOnly: formattedTime,
+    dateTime: new Intl.DateTimeFormat('en-US', dateTimeOptions).format(dateObj),
+    dateDay: new Intl.DateTimeFormat('en-US', dateDayOptions).format(dateObj),
+    date: new Intl.DateTimeFormat('en-US', dateOptions).format(dateObj),
+    time: new Intl.DateTimeFormat('en-US', timeOptions).format(dateObj),
   };
 };
 
