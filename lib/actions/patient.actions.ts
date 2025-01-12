@@ -23,7 +23,6 @@ export const createUser = async (user: CreateUserParams) => {
       undefined,
       user.name
     );
-
     return parseStringify(newUser);
   } catch (error: any) {
     // Check existing user

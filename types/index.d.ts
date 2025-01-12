@@ -41,7 +41,7 @@ declare type CreateAppointmentParams = {
   patient: string;
   primaryPhysician: string;
   reason: string;
-  schedule: Date;
+  schedule: Date | string;
   status: Status;
   note: string | undefined;
 };
