@@ -1,11 +1,15 @@
+"use client"
+
 import CurrentYear from "@/components/CurrentYear";
 import PatientForm from "@/components/forms/PatientForm";
 import PasskeyModal from "@/components/PasskeyModal";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
-export default function Home({searchParams}: SearchParamProps) {
-  const isAdmin = searchParams.admin === "true";
+export default function Home() {
+  const searchParams = useSearchParams();
+  const isAdmin = searchParams.get('admin') === "true";
 
   return (
     <div className="flex h-screen max-h-screen">
