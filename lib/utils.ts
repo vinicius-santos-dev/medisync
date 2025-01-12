@@ -10,7 +10,7 @@ export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
 // FORMAT DATE TIME
-export const formatDateTime = (date: Date | string, timeZone: string = 'UTC') => {
+export const formatDateTime = (date: Date | string, timeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone) => {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
     // weekday: "short", // abbreviated weekday name (e.g., 'Mon')
     month: "short", // abbreviated month name (e.g., 'Oct')
@@ -22,35 +22,35 @@ export const formatDateTime = (date: Date | string, timeZone: string = 'UTC') =>
     timeZone: timeZone, // use the provided timezone
   };
 
-  const dateDayOptions: Intl.DateTimeFormatOptions = {
-    weekday: "short", // abbreviated weekday name (e.g., 'Mon')
-    year: "numeric", // numeric year (e.g., '2023')
-    month: "2-digit", // abbreviated month name (e.g., 'Oct')
-    day: "2-digit", // numeric day of the month (e.g., '25')
-    timeZone: timeZone, // use the provided timezone
-  };
+  // const dateDayOptions: Intl.DateTimeFormatOptions = {
+  //   weekday: "short", // abbreviated weekday name (e.g., 'Mon')
+  //   year: "numeric", // numeric year (e.g., '2023')
+  //   month: "2-digit", // abbreviated month name (e.g., 'Oct')
+  //   day: "2-digit", // numeric day of the month (e.g., '25')
+  //   timeZone: timeZone, // use the provided timezone
+  // };
 
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    month: "short", // abbreviated month name (e.g., 'Oct')
-    year: "numeric", // numeric year (e.g., '2023')
-    day: "numeric", // numeric day of the month (e.g., '25')
-    timeZone: timeZone, // use the provided timezone
-  };
+  // const dateOptions: Intl.DateTimeFormatOptions = {
+  //   month: "short", // abbreviated month name (e.g., 'Oct')
+  //   year: "numeric", // numeric year (e.g., '2023')
+  //   day: "numeric", // numeric day of the month (e.g., '25')
+  //   timeZone: timeZone, // use the provided timezone
+  // };
 
-  const timeOptions: Intl.DateTimeFormatOptions = {
-    hour: "numeric", // numeric hour (e.g., '8')
-    minute: "numeric", // numeric minute (e.g., '30')
-    hour12: true, // use 12-hour clock (true) or 24-hour clock (false)
-    timeZone: timeZone, // use the provided timezone
-  };
+  // const timeOptions: Intl.DateTimeFormatOptions = {
+  //   hour: "numeric", // numeric hour (e.g., '8')
+  //   minute: "numeric", // numeric minute (e.g., '30')
+  //   hour12: true, // use 12-hour clock (true) or 24-hour clock (false)
+  //   timeZone: timeZone, // use the provided timezone
+  // };
 
   const dateObj = typeof date === 'string' ? new Date(date) : date;
 
   return {
-    dateTime: new Intl.DateTimeFormat('en-US', dateTimeOptions).format(dateObj),
-    dateDay: new Intl.DateTimeFormat('en-US', dateDayOptions).format(dateObj),
-    date: new Intl.DateTimeFormat('en-US', dateOptions).format(dateObj),
-    time: new Intl.DateTimeFormat('en-US', timeOptions).format(dateObj),
+    dateTime: dateObj.toLocaleString('en-US', dateTimeOptions),
+    dateDay: dateObj.toLocaleDateString('en-US', { ...dateTimeOptions, weekday: 'short' }),
+    date: dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric', day: 'numeric', timeZone }),
+    time: dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone }),
   };
 };
 
