@@ -8,15 +8,7 @@ import { formatDateTime } from "@/lib/utils";
 import { Doctors } from "@/constants";
 import Image from "next/image";
 import AppointmentModal from "../AppointmentModal";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
-};
+import { useTimezone } from "@/hooks/useTimeZone";
 
 export const columns: ColumnDef<Appointment>[] = [
   {
@@ -41,12 +33,16 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "schedule",
-    header: "Appointment",
-    cell: ({ row }) => (
-      <p className="text-14-regular min-w-[100px]">
-        {formatDateTime(row.original.schedule).dateTime}
-      </p>
-    ),
+    header: "Schedule",
+    cell: function DateCell({ row }) {
+      const timezone = useTimezone();
+      
+      return (
+        <p className="text-14-regular min-w-[100px]">
+          {formatDateTime(row.original.schedule, timezone).dateTime}
+        </p>
+      );
+    }
   },
   {
     accessorKey: "primaryPhysician",

@@ -75,7 +75,7 @@ const AppointmentForm = ({
           userId,
           patient: patientId,
           primaryPhysician: values.primaryPhysician,
-          schedule: new Date(values.schedule).toISOString(),
+          schedule: new Date(values.schedule),
           reason: values.reason!,
           note: values.note,
           status: status as Status,
