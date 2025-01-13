@@ -52,9 +52,9 @@ const PatientForm = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (

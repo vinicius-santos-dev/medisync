@@ -12,10 +12,13 @@ import { useRouter } from "next/navigation";
 import { registerPatient } from "@/lib/actions/patient.actions";
 import { FormFieldType } from "./PatientForm";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants";
+import {
+  GenderOptions,
+  IdentificationTypes,
+  PatientFormDefaultValues,
+} from "@/constants";
 import { Label } from "../ui/label";
 import { SelectItem } from "../ui/select";
-import Image from "next/image";
 import FileUploader from "../FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
@@ -27,9 +30,9 @@ const RegisterForm = ({ user }: { user: User }) => {
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: "",
-      email: "",
-      phone: "",
+      name: user.name || "",
+      email: user.email || "",
+      phone: user.phone || "",
     },
   });
 
@@ -38,7 +41,10 @@ const RegisterForm = ({ user }: { user: User }) => {
 
     let formData;
 
-    if (values.identificationDocument && values.identificationDocument.length > 0) {
+    if (
+      values.identificationDocument &&
+      values.identificationDocument.length > 0
+    ) {
       const blobFile = new Blob([values.identificationDocument[0]], {
         type: values.identificationDocument[0].type,
       });
@@ -54,17 +60,19 @@ const RegisterForm = ({ user }: { user: User }) => {
         userId: user.$id,
         birthDate: new Date(values.birthDate),
         identificationDocument: formData,
-      }
+      };
+
+      console.log('DATA: ', patientData);
 
       // @ts-expect-error - allergies is optional (but it says that it's required)
       const patient = await registerPatient(patientData);
 
-      if (patient) router.push(`/patients/${user.$id}/new-appointment`)
+      if (patient) router.push(`/patients/${user.$id}/new-appointment`);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
@@ -189,29 +197,6 @@ const RegisterForm = ({ user }: { user: User }) => {
             <h2 className="sub-header">Medical Information </h2>
           </div>
         </section>
-
-        <CustomFormField
-          fieldType={FormFieldType.SELECT}
-          control={form.control}
-          name="primaryPhysician"
-          label="Primary Physician"
-          placeholder="Select a physician"
-        >
-          {Doctors.map((doctor) => (
-            <SelectItem key={doctor.name} value={doctor.name}>
-              <div className="flex cursor-pointer items-center gap-2">
-                <Image
-                  src={doctor.image}
-                  alt={doctor.name}
-                  width={32}
-                  height={32}
-                  className="rounded-full border border-dark-500"
-                />
-                <p>{doctor.name}</p>
-              </div>
-            </SelectItem>
-          ))}
-        </CustomFormField>
 
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
