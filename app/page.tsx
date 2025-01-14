@@ -18,10 +18,10 @@ export default async function Home(props: SearchParamProps) {
         <div className="sub-container max-w-[496px]">
           <Image
             src="/assets/icons/logo-full.png"
-            height={1000}
-            width={1000}
+            height={48}
+            width={240}
             alt="MediSync Logo"
-            className="mb-12 h-12 w-fit"
+            className="mb-12"
           />
 
           <PatientForm />
@@ -38,7 +38,7 @@ export default async function Home(props: SearchParamProps) {
       </section>
 
       <Image
-        src="/assets/images/onboarding-img.png"
+        src="/assets/images/onboarding-img.webp"
         height={1000}
         width={1000}
         alt="Onboarding Image"

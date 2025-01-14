@@ -37,7 +37,7 @@ const NewAppointment = async (props: SearchParamProps) => {
       </section>
 
       <Image
-        src="/assets/images/appointment-img.png"
+        src="/assets/images/appointment-img.webp"
         height={1000}
         width={1000}
         alt="Appointment Image"
