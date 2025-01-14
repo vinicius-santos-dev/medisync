@@ -43,6 +43,7 @@ export default async function Home(props: SearchParamProps) {
         width={1000}
         alt="Onboarding Image"
         className="side-img max-w-[50%]"
+        priority={true}
       />
     </div>
   );
