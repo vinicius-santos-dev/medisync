@@ -21,6 +21,18 @@ import { Label } from "../ui/label";
 import { SelectItem } from "../ui/select";
 import FileUploader from "../FileUploader";
 
+/**
+ * RegisterForm Component - Handles detailed patient registration after initial creation
+ *
+ * Features:
+ * - Comprehensive patient data collection
+ * - File upload support
+ * - Form validation using Zod
+ * - Pre-filled data from initial registration
+ * - Dynamic form fields
+ *
+ * @param {User} user - Initial patient data from creation
+ */
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
 
@@ -61,8 +73,6 @@ const RegisterForm = ({ user }: { user: User }) => {
         birthDate: new Date(values.birthDate),
         identificationDocument: formData,
       };
-
-      console.log('DATA: ', patientData);
 
       // @ts-expect-error - allergies is optional (but it says that it's required)
       const patient = await registerPatient(patientData);

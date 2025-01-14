@@ -19,6 +19,23 @@ import {
 } from "@/lib/actions/appointment.actions";
 import { Appointment } from "@/types/appwrite.types";
 
+/**
+ * AppointmentForm Component - Handles creation, cancellation and scheduling of appointments
+ *
+ * Props:
+ * @param {string} userId - Patient identifier
+ * @param {string} patientId - Patient identifier for appointment association
+ * @param {'create' | 'cancel' | 'schedule'} type - Form mode
+ * @param {Appointment} appointment - Optional existing appointment data
+ * @param {Function} setOpen - Optional modal control function
+ *
+ * Features:
+ * - Dynamic form fields based on type
+ * - Date/time selection with timezone support
+ * - Form validation using Zod
+ * - Server action integration
+ * - Success/error handling
+ */
 const AppointmentForm = ({
   userId,
   patientId,
@@ -69,6 +86,7 @@ const AppointmentForm = ({
         status = "pending";
         break;
     }
+
     try {
       if (type === "create" && patientId) {
         const appointmentData = {
@@ -100,6 +118,7 @@ const AppointmentForm = ({
             cancellationReason: values?.cancellationReason,
           },
           type,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         };
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
@@ -115,7 +134,6 @@ const AppointmentForm = ({
     } finally {
       setIsLoading(false);
     }
-
   };
 
   let buttonLabel;

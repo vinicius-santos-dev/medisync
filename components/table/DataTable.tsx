@@ -24,10 +24,25 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
+/**
+ * DataTable Component - Generic table component built with TanStack Table and Shadcn UI
+ * 
+ * Features:
+ * - Generic typing for data and value types
+ * - Column configuration support
+ * - Pagination controls
+ * - Custom cell rendering
+ * - Responsive design
+ * 
+ * @template TData - Type of data being displayed
+ * @template TValue - Type of cell values
+ */
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+
+  // Table configuration with pagination
   const table = useReactTable({
     data,
     columns,

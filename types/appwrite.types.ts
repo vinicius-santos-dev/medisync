@@ -1,3 +1,7 @@
+/**
+ * Appwrite Type Definitions - Contains all types for Appwrite database models and responses
+ */
+
 import { Models } from "node-appwrite";
 
 export interface Patient extends Models.Document {

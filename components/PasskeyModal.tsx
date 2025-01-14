@@ -20,6 +20,14 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+/**
+ * PasskeyModal Component - Secure admin authentication modal using OTP-style input
+ *
+ * Features:
+ * - 6-digit passkey input
+ * - Error handling and display
+ * - Validation integration
+ */
 const PasskeyModal = () => {
   const router = useRouter();
   const path = usePathname();
@@ -33,19 +41,27 @@ const PasskeyModal = () => {
       ? window.localStorage.getItem("accessKey")
       : null;
 
+  // Authentication effect to handle auto-login and redirects
   useEffect(() => {
+    // Decrypt stored passkey if exists
     const accessKey = encryptedKey && decryptKey(encryptedKey);
 
     if (path) {
       if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!.toString()) {
         setOpen(false);
-        router.push("/admin")
+        router.push("/admin");
       } else {
         setOpen(true);
       }
     }
   }, [encryptedKey, path, router]);
 
+  /**
+   * Validates submitted passkey against environment variable
+   * 
+   * Handles encryption and storage of valid keys
+   * @param e - Click event from submit button
+   */
   const validatePasskey = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {

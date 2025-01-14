@@ -10,6 +10,14 @@ import Image from "next/image";
 import AppointmentModal from "../AppointmentModal";
 import { useTimezone } from "@/hooks/useTimeZone";
 
+/**
+ * Table Columns Configuration - Defines the structure and rendering of appointment data table
+ *
+ * Features:
+ * - Custom cell renderers for patient, status, schedule and doctor
+ * - Date/time formatting with timezone support
+ * - Modal actions for appointment management
+ */
 export const columns: ColumnDef<Appointment>[] = [
   {
     header: "ID",
@@ -36,13 +44,13 @@ export const columns: ColumnDef<Appointment>[] = [
     header: "Schedule",
     cell: function DateCell({ row }) {
       const timezone = useTimezone();
-      
+
       return (
         <p className="text-14-regular min-w-[100px]">
           {formatDateTime(row.original.schedule, timezone).dateTime}
         </p>
       );
-    }
+    },
   },
   {
     accessorKey: "primaryPhysician",

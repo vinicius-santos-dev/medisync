@@ -21,6 +21,16 @@ export enum FormFieldType {
   SKELETON = "skeleton",
 }
 
+/**
+ * PatientForm Component - Handles initial patient registration and data collection
+ * 
+ * Features:
+ * - Basic patient information collection
+ * - Form validation using Zod
+ * - Loading state management
+ * - Error handling
+ * - Server action integration
+ */
 const PatientForm = () => {
   const router = useRouter();
 

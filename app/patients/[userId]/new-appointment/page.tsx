@@ -3,12 +3,20 @@ import AppointmentForm from "@/components/forms/AppointmentForm";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 
+/**
+ * New Appointment Page - Handles creation of new appointments for existing patients
+ * 
+ * Route: /patients/[userId]/new-appointment
+ * 
+ * Features:
+ * - Dynamic patient data loading
+ * - Appointment scheduling form
+ * - Validation and submission handling
+ */
 const NewAppointment = async (props: SearchParamProps) => {
   const params = await props.params;
 
-  const {
-    userId
-  } = params;
+  const { userId } = params;
 
   const patient = await getPatient(userId);
 

@@ -1,3 +1,7 @@
+/*
+ * Global Type Declarations - Contains type definitions used throughout the application
+ */
+
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -51,4 +55,5 @@ declare type UpdateAppointmentParams = {
   userId: string;
   appointment: Appointment;
   type: string;
+  timeZone: string;
 };

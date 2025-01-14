@@ -10,11 +10,22 @@ type FileUploaderProps = {
   onChange: (files: File[]) => void;
 };
 
+
+/**
+ * FileUploader Component - Handles file uploads with drag-and-drop and click-to-upload functionality
+ * 
+ * Features:
+ * - Drag and drop support
+ * - Image preview
+ * - File type validation
+ * - Client-side image conversion
+ */
 const FileUploader = ({ files, onChange }: FileUploaderProps) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     onChange(acceptedFiles);
   }, [onChange]);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
     <div {...getRootProps()} className="file-upload">

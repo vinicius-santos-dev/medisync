@@ -3,12 +3,15 @@ import RegisterForm from "@/components/forms/RegisterForm";
 import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 
+/**
+ * Patient Registration Page - Handles the detailed registration process after initial patient creation
+ * 
+ * Route: /patients/[userId]/register
+ */
 const Register = async (props: SearchParamProps) => {
   const params = await props.params;
 
-  const {
-    userId
-  } = params;
+  const { userId } = params;
 
   const user = await getUser(userId);
 

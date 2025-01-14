@@ -1,5 +1,9 @@
 "use server";
 
+/**
+ * Patient Server Actions - Handles all patient-related database operations
+ */
+
 import { ID, Query } from "node-appwrite";
 import {
   BUCKET_ID,

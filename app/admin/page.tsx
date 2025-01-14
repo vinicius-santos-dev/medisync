@@ -5,6 +5,14 @@ import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * Admin Dashboard - Protected route that displays appointment management interface
+ * 
+ * Features:
+ * - Appointment statistics
+ * - Data table with all appointments
+ * - Quick actions for appointment management
+ */
 const Admin = async () => {
   const appointments = await getRecentAppointmentList();
 

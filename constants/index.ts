@@ -1,5 +1,19 @@
+/**
+ * Application Constants
+ * Central location for all application-wide constants and default values
+ */
+
+/**
+ * Available gender options for patient registration
+ * @type {string[]}
+ */
 export const GenderOptions = ["male", "female", "other"];
 
+/**
+ * Default values for patient registration form
+ * Used to initialize form state and reset form
+ * @type {PatientFormValues}
+ */
 export const PatientFormDefaultValues = {
   firstName: "",
   lastName: "",
@@ -26,6 +40,11 @@ export const PatientFormDefaultValues = {
   privacyConsent: false,
 };
 
+/**
+ * Accepted identification document types
+ * Used in patient registration for ID verification
+ * @type {string[]}
+ */
 export const IdentificationTypes = [
   "Birth Certificate",
   "Driver's License",
@@ -34,12 +53,14 @@ export const IdentificationTypes = [
   "National Identity Card",
   "Passport",
   "Resident Alien Card (Green Card)",
-  "Social Security Card",
   "State ID Card",
-  "Student ID Card",
-  "Voter ID Card",
 ];
 
+/**
+ * Available doctors in the system
+ * Used for appointment scheduling and display
+ * @type {Doctor[]}
+ */
 export const Doctors = [
   {
     image: "/assets/images/dr-green.png",

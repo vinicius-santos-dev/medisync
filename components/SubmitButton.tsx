@@ -9,6 +9,18 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
+/**
+ * SubmitButton Component - Reusable button component for form submissions with loading state
+ *
+ * Features:
+ * - Loading state indicator
+ * - Disabled state during submission
+ * - Custom children content
+ * - Consistent styling across forms
+ *
+ * @param props.isLoading - Loading state flag
+ * @param props.children - Button content/label
+ */
 const SubmitButton = ({ isLoading, className, children }: ButtonProps) => {
   return (
     <Button

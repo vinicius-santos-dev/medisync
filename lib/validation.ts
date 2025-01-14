@@ -1,3 +1,13 @@
+/**
+ * Form Validation Schemas - Central location for all Zod validation schemas
+ * 
+ * Features:
+ * - Type-safe form validation
+ * - Custom error messages
+ * - Required field handling
+ * - Date and phone format validation
+ */
+
 import { z } from "zod";
 
 export const UserFormValidation = z.object({

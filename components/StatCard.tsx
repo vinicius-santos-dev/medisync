@@ -8,6 +8,16 @@ interface StatCardProps {
   icon: string;
 }
 
+/**
+ * StatCard Component - Display statistics with dynamic styling based on type
+ * 
+ * Features:
+ * - Dynamic background colors
+ * - Icon integration
+ * - Count display
+ * - Type-safe props
+ */
+
 const StatCard = ({ type, count = 0, label, icon }: StatCardProps) => {
   return (
     <div

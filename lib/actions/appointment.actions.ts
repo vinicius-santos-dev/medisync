@@ -1,5 +1,9 @@
 "use server";
 
+/**
+ * Appointment Server Actions - Handles all appointment-related database operations and notifications
+ */
+
 import { ID, Query } from "node-appwrite";
 import {
   APPOINTMENT_COLLECTION_ID,
@@ -93,7 +97,8 @@ export const updateAppointment = async ({
   appointmentId,
   appointment,
   userId,
-  type
+  type,
+  timeZone,
 }: UpdateAppointmentParams) => {
   try {
     const updatedAppointment = await databases.updateDocument(
@@ -107,18 +112,19 @@ export const updateAppointment = async ({
       throw new Error("Appointment not found");
     }
 
+    // Send notification based on update type
     const smsMessage = `
     Greetings from MediSync. 
     ${
       type === "schedule"
-        ? `Your appointment has been scheduled for ${formatDateTime(
-            appointment.schedule!
-          ).dateTime} with Dr. ${appointment.primaryPhysician}`
+        ? `Your appointment has been scheduled for ${
+            formatDateTime(appointment.schedule!, timeZone).dateTime
+          } with Dr. ${appointment.primaryPhysician}`
         : `We regret to inform you that your appointment has been cancelled for the following reason: ${appointment.cancellationReason}`
     }
     `;
 
-    await sendSMSNotification(userId, smsMessage)
+    await sendSMSNotification(userId, smsMessage);
 
     // Revalidate the /admin path to update the cache
     revalidatePath("/admin");

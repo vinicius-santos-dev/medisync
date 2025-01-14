@@ -13,6 +13,21 @@ import { Button } from "./ui/button";
 import AppointmentForm from "./forms/AppointmentForm";
 import { Appointment } from "@/types/appwrite.types";
 
+/**
+ * AppointmentModal Component - Modal for managing appointment status changes and details
+ *
+ * Features:
+ * - Status updates (cancel/schedule)
+ * - Dynamic form based on action type
+ * - Patient details display
+ * - Appointment time display
+ * - SMS notification integration
+ *
+ * @param props.type - Modal action type (cancel/schedule)
+ * @param props.patientId - Patient identifier
+ * @param props.userId - User identifier
+ * @param props.appointment - Appointment details
+ */
 const AppointmentModal = ({
   type,
   patientId,

@@ -9,6 +9,19 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import CurrentYear from "./CurrentYear";
 
+
+/**
+ * SuccessContent Component - Displays appointment confirmation details after successful scheduling
+ * 
+ * Features:
+ * - Appointment details display
+ * - Doctor information
+ * - Timezone-aware date formatting
+ * - Responsive layout
+ * 
+ * @param props.appointment - Scheduled appointment details
+ * @param props.userId - Patient identifier for routing
+ */
 const SuccessContent = ({
   appointment,
   userId,
@@ -17,6 +30,7 @@ const SuccessContent = ({
   userId: string;
 }) => {
   const timezone = useTimezone();
+
   const doctor = Doctors.find(
     (doc) => doc.name === appointment.primaryPhysician
   );

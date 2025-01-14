@@ -2,6 +2,15 @@ import { StatusIcon } from "@/constants";
 import clsx from "clsx";
 import Image from "next/image";
 
+/**
+ * StatusBadge Component - Visual indicator for appointment status with color coding and icons
+ * 
+ * Features:
+ * - Dynamic color based on status
+ * - Status-specific icons
+ * - Consistent styling across app
+ * - Type-safe status handling
+ */
 const StatusBadge = ({ status }: { status: Status }) => {
   return <div className={clsx("status-badge", {
     "bg-green-600": status === "scheduled",
