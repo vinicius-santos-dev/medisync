@@ -73,7 +73,7 @@ npm run dev
 ```
 
 ## 🎯 Project Structure
-
+```
 src/
 ├── app/             # Page components
 ├── components/      # Reusable components
@@ -86,6 +86,7 @@ src/
 │   └── validation   # Form validations
 └── public/          # Static assets 
 └── types/           # TypeScript definitions
+```
 
 ## 🔗 Live Demo
 
