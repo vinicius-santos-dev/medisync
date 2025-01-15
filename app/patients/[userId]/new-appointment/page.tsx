@@ -5,9 +5,9 @@ import Image from "next/image";
 
 /**
  * New Appointment Page - Handles creation of new appointments for existing patients
- * 
+ *
  * Route: /patients/[userId]/new-appointment
- * 
+ *
  * Features:
  * - Dynamic patient data loading
  * - Appointment scheduling form
@@ -31,17 +31,17 @@ const NewAppointment = async (props: SearchParamProps) => {
             alt="MediSync Logo"
             className="mb-12 h-12 w-fit"
           />
+
+          <AppointmentForm
+            type="create"
+            userId={userId}
+            patientId={patient.$id}
+          />
+
+          <p className="copyright mt-10 py-12">
+            © <CurrentYear /> MediSync
+          </p>
         </div>
-
-        <AppointmentForm
-          type="create"
-          userId={userId}
-          patientId={patient.$id}
-        />
-
-        <p className="copyright mt-10 py-12">
-          © <CurrentYear /> MediSync
-        </p>
       </section>
 
       <Image
